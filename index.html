@@ -1,0 +1,671 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vulcano | Menu</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #e50914;
+            --red-dark: #a8000b;
+            --black: #070707;
+            --dark: #101010;
+            --card: #181818;
+            --white: #ffffff;
+            --gray: #aaaaaa;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #300306 0%, #070707 42%);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            text-align: center;
+            padding: 35px 20px 28px;
+        }
+
+        .logo {
+            width: 145px;
+            height: 145px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 18px;
+
+            filter: drop-shadow(0 0 22px rgba(229, 9, 20, 0.35));
+        }
+
+        .restaurant-name {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .restaurant-name span {
+            color: var(--red);
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            color: var(--gray);
+            font-size: 13px;
+            letter-spacing: 3px;
+        }
+
+        /* CATEGORY BAR */
+
+        .categories {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+
+            padding: 12px 12px;
+
+            background: rgba(7, 7, 7, 0.94);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(229, 9, 20, 0.25);
+
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            flex-shrink: 0;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+            border: 1px solid #333;
+
+            background: #151515;
+            color: #ddd;
+
+            font-size: 13px;
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+        }
+
+        /* MAIN */
+
+        main {
+            width: min(100%, 900px);
+            margin: auto;
+
+            padding: 28px 16px 60px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            scroll-margin-top: 80px;
+        }
+
+        /* SECTION TITLE */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+            margin-bottom: 20px;
+        }
+
+        .section-title::before {
+            content: "";
+
+            width: 5px;
+            height: 35px;
+
+            background: var(--red);
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 15px rgba(229, 9, 20, 0.5);
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .section-title p {
+            margin-top: 4px;
+
+            color: var(--gray);
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        /* MENU ITEMS */
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .menu-item {
+            position: relative;
+
+            padding: 18px 16px;
+
+            background:
+                linear-gradient(145deg, #1c1c1c, #101010);
+
+            border: 1px solid #292929;
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            transition: 0.25s;
+        }
+
+        .menu-item::after {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            top: -35px;
+            left: -30px;
+
+            background: var(--red);
+
+            opacity: 0.05;
+
+            border-radius: 50%;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+
+            border-color: rgba(229, 9, 20, 0.6);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .item-en {
+            font-size: 15px;
+            font-weight: 800;
+
+            color: white;
+
+            margin-bottom: 7px;
+
+            direction: ltr;
+            text-align: left;
+        }
+
+        .item-ar {
+            font-size: 14px;
+            color: #aaa;
+
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* SMALL ITEMS */
+
+        .small-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .small-item {
+            padding: 15px;
+
+            text-align: center;
+
+            background: #141414;
+
+            border: 1px solid #292929;
+            border-radius: 13px;
+
+            transition: 0.25s;
+        }
+
+        .small-item:hover {
+            border-color: rgba(229, 9, 20, 0.5);
+        }
+
+        .small-item .item-en {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .small-item .item-ar {
+            text-align: center;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 32px 20px 50px;
+
+            background: #070707;
+
+            border-top: 1px solid #222;
+        }
+
+        .footer-logo {
+            width: 75px;
+            height: 75px;
+
+            object-fit: contain;
+
+            margin-bottom: 12px;
+        }
+
+        .footer-name {
+            font-size: 21px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .phone {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 12px 22px;
+
+            background: var(--red);
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            direction: ltr;
+
+            box-shadow:
+                0 5px 20px rgba(229, 9, 20, 0.25);
+        }
+
+        .address {
+            margin-top: 16px;
+
+            color: #999;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding-top: 28px;
+            }
+
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .restaurant-name {
+                font-size: 30px;
+            }
+
+            main {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .small-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <!-- VULCANO LOGO -->
+        <img
+            src="./image/img44.jpg"
+            alt="Vulcano Logo"
+            class="logo"
+        >
+
+        <div class="restaurant-name">
+            VUL<span>CANO</span>
+        </div>
+
+        <div class="subtitle">
+            RESTAURANT & MENU
+        </div>
+
+    </header>
+
+
+    <!-- CATEGORY NAVIGATION -->
+
+    <nav class="categories">
+
+        <button
+            class="category-btn active"
+            onclick="scrollToSection('manakeesh', this)">
+            مناقيش
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="scrollToSection('dips', this)">
+            الصلصات
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="scrollToSection('cheese', this)">
+            أنواع الجبنة
+        </button>
+
+    </nav>
+
+
+    <main>
+
+        <!-- MANAKEESH -->
+
+        <section class="section" id="manakeesh">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>مناقيش</h2>
+                    <p>MANAKEESH</p>
+                </div>
+
+            </div>
+
+
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <div class="item-en">Kafta + Cheese</div>
+                    <div class="item-ar">كفتة مع جبنة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Zaatar</div>
+                    <div class="item-ar">منقوشة زعتر</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Mortadella & Cheese</div>
+                    <div class="item-ar">مرتديلا وجبنة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Cheese</div>
+                    <div class="item-ar">منقوشة جبنة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Turkey & Cheese</div>
+                    <div class="item-ar">تركي وجبنة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">MIX</div>
+                    <div class="item-ar">زعتر وجبنة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Double Cheese</div>
+                    <div class="item-ar">دوبل جبنة وزعتر</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Bandoura w Basal</div>
+                    <div class="item-ar">بندورة وبصل</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Fajita</div>
+                    <div class="item-ar">فاهيتا</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Kishk</div>
+                    <div class="item-ar">كشك</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Pikasso</div>
+                    <div class="item-ar">بيكاسو</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Lahme Bi Ajeen</div>
+                    <div class="item-ar">لحمة بعجين</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">3 Cheese</div>
+                    <div class="item-ar">٣ أجبان</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Soujouk</div>
+                    <div class="item-ar">سجق</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Safiha</div>
+                    <div class="item-ar">صفيحة</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-en">Sbang</div>
+                    <div class="item-ar">سبانخ</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIPS -->
+
+        <section class="section" id="dips">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>الصلصات الجانبية</h2>
+                    <p>OUR DIPS</p>
+                </div>
+
+            </div>
+
+
+            <div class="small-grid">
+
+                <div class="small-item">
+                    <div class="item-en">Secret Sauce</div>
+                    <div class="item-ar">صوص سري</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Salsa</div>
+                    <div class="item-ar">سالسا</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">BBQ</div>
+                    <div class="item-ar">باربكيو</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Ranch</div>
+                    <div class="item-ar">رانش</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Honey</div>
+                    <div class="item-ar">عسل</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Mustard</div>
+                    <div class="item-ar">خردل</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHEESE -->
+
+        <section class="section" id="cheese">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>أنواع الجبنة</h2>
+                    <p>TYPES OF CHEESE</p>
+                </div>
+
+            </div>
+
+
+            <div class="small-grid">
+
+                <div class="small-item">
+                    <div class="item-en">Mozzarella</div>
+                    <div class="item-ar">موزاريلا</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Cheddar</div>
+                    <div class="item-ar">شيدر</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Emmental</div>
+                    <div class="item-ar">إمنتال</div>
+                </div>
+
+                <div class="small-item">
+                    <div class="item-en">Parmesan</div>
+                    <div class="item-ar">بارميزان</div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <img
+            src="./image/img44.jpg"
+            alt="Vulcano Logo"
+            class="footer-logo"
+        >
+
+        <div class="footer-name">
+            VULCANO
+        </div>
+
+        <a
+            href="tel:78747126"
+            class="phone"
+            dir="ltr">
+            📞 78 747 126
+        </a>
+
+        <div class="address">
+            تمنين التحتا - الطريق العام<br>
+            جانب حسينية البلدة
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        function scrollToSection(id, button) {
+
+            document.getElementById(id).scrollIntoView({
+                behavior: "smooth"
+            });
+
+            document
+                .querySelectorAll(".category-btn")
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+            button.classList.add("active");
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
