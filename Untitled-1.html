@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+
+  <title>مطعم وسناك أبو مصطفى</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #ffca28;
+      --background: #101010;
+      --card: #1b1b1b;
+      --text: #ffffff;
+      --muted: #bdbdbd;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 16px 24px;
+      border-bottom: 1px solid #302811;
+      background: radial-gradient(ellipse at top, #30240b 0%, #101010 70%);
+    }
+
+    .logo {
+      width: 125px;
+      height: 125px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 20px #ffca2830;
+    }
+
+    h1 {
+      color: var(--gold);
+      font-size: clamp(25px, 5vw, 36px);
+      margin: 12px 0 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .nav-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 500px;
+      margin: 22px auto 0;
+    }
+
+    .nav-menu a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: var(--gold);
+      background: #1b1b1b;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 11px 8px;
+      font-weight: 800;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-menu a:hover {
+      background: var(--gold);
+      color: #111;
+    }
+
+    main {
+      width: min(100% - 28px, 850px);
+      margin: 0 auto;
+      padding: 22px 0 35px;
+    }
+
+    .menu-section {
+      margin-bottom: 34px;
+      scroll-margin-top: 15px;
+    }
+
+    .section-title {
+      color: var(--gold);
+      text-align: center;
+      font-size: 25px;
+      margin: 8px 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #40351a;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      background: var(--card);
+      border: 1px solid #303030;
+      border-radius: 13px;
+      padding: 10px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .menu-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .food-image {
+      width: 76px;
+      height: 76px;
+      flex: 0 0 76px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #292929;
+    }
+
+    .item-info {
+      min-width: 0;
+    }
+
+    .item-info h3 {
+      font-size: 14px;
+      margin: 0 0 5px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .price {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: right;
+    }
+
+    .location-section {
+      text-align: center;
+      padding: 20px 14px;
+      background: var(--card);
+      border: 1px solid #383020;
+      border-radius: 16px;
+      margin: 30px 0;
+      scroll-margin-top: 15px;
+    }
+
+    .location-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      margin: 5px auto 12px;
+    }
+
+    .location-section p {
+      color: var(--muted);
+      margin: 5px 0 14px;
+    }
+
+    .location-link,
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #111;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 23px 12px;
+      color: var(--muted);
+      border-top: 1px solid #302811;
+      scroll-margin-top: 15px;
+    }
+
+    footer strong {
+      color: var(--gold);
+    }
+
+    .phone-link {
+      direction: ltr;
+      unicode-bidi: isolate;
+      white-space: nowrap;
+    }
+
+    .phone-number {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+
+    @media (max-width: 520px) {
+      main {
+        width: calc(100% - 20px);
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .menu-item {
+        padding: 9px;
+      }
+
+      .food-image {
+        width: 70px;
+        height: 70px;
+        flex-basis: 70px;
+      }
+
+      .item-info h3 {
+        font-size: 15px;
+      }
+
+      .price {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img
+      class="logo"
+      src="img/img44.jpg"
+      alt="شعار مطعم أبو مصطفى"
+    >
+
+    <h1>مطعم وسناك أبو مصطفى</h1>
+    <p class="subtitle">أطيب المأكولات، محضّرة بكل حب ❤️</p>
+
+    <nav class="nav-menu" aria-label="التنقل في الموقع">
+      <a href="#meals">🍽️ الوجبات</a>
+      <a href="#sandwiches">🥪 السندويشات</a>
+      <a href="#location">📍 الموقع</a>
+      <a href="#phone">📞 الهاتف</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- السندويشات -->
+    <section class="menu-section" id="sandwiches">
+      <h2 class="section-title">🥪 السندويشات</h2>
+
+      <div class="menu-grid">
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img1.jpg" alt="سندويش شقف" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش شقف</h3>
+            <div class="price">300,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img2.jpg" alt="سندويش كباب دجاج" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش كباب دجاج</h3>
+            <div class="price">180,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img3.jpg" alt="سندويش كباب لحمة" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش كباب لحمة</h3>
+            <div class="price">250,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img4.jpg" alt="سندويش بطاطا" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش بطاطا</h3>
+            <div class="price">150,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img5.jpg" alt="سندويش طاووق صغير" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش طاووق صغير</h3>
+            <div class="price">250,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img6.jpg" alt="سندويش طاووق كبير" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش طاووق كبير</h3>
+            <div class="price">350,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img7.jpg" alt="شاورما تركي" loading="lazy">
+          <div class="item-info">
+            <h3>شاورما تركي</h3>
+            <div class="price">350,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img8.jpg" alt="سندويش شاورما" loading="lazy">
+          <div class="item-info">
+            <h3>سندويش شاورما</h3>
+            <div class="price">250,000 ل.ل</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- الوجبات -->
+    <section class="menu-section" id="meals">
+      <h2 class="section-title">🍽️ الوجبات</h2>
+
+      <div class="menu-grid">
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img9.jpg" alt="كيلو كباب دجاج" loading="lazy">
+          <div class="item-info">
+            <h3>كيلو كباب دجاج</h3>
+            <div class="price">600,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img10.jpg" alt="كيلو طاووق" loading="lazy">
+          <div class="item-info">
+            <h3>كيلو طاووق</h3>
+            <div class="price">900,000 ل.ل</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img11.jpg" alt="كيلو كباب لحمة" loading="lazy">
+          <div class="item-info">
+            <h3>كيلو كباب لحمة</h3>
+            <div class="price">20$</div>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="food-image" src="img/img12.jpg" alt="وجبة شاورما" loading="lazy">
+          <div class="item-info">
+            <h3>وجبة شاورما</h3>
+            <div class="price">300,000 ل.ل</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- موقع المطعم -->
+    <section class="location-section" id="location">
+      <h2 class="section-title">📍 موقعنا</h2>
+
+      <img
+        class="location-image"
+        src="img/img45.jpg"
+        alt="موقع مطعم أبو مصطفى"
+        loading="lazy"
+      >
+
+      <p>زورونا واستمتعوا بأطيب المأكولات!</p>
+
+      <a
+        class="location-link"
+        href="https://www.google.com/maps/search/?api=1&query=V282%2BX3X%2C+Lebanon"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 افتح موقع المطعم على الخريطة
+      </a>
+    </section>
+
+  </main>
+
+  <!-- رقم الهاتف -->
+  <footer id="phone">
+    <p>للطلب والاستفسار</p>
+
+    <a
+      class="phone-link"
+      href="tel:+9613257947"
+      aria-label="اتصل بمطعم أبو مصطفى"
+    >
+      <span>📞</span>
+      <span class="phone-number" dir="ltr">03 257 947</span>
+    </a>
+
+    <p>© <strong>مطعم وسناك أبو مصطفى</strong></p>
+  </footer>
+
+</body>
+</html>
